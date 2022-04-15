@@ -134,22 +134,24 @@ class Utility {
   }
 
   static async retrieveFields() {
-    const crmInfo: { data: { fields: Fields } } = await db.query(
-      q.Get(q.Documents(q.Collection('crm-resources')))
+    const crmInfo: { fields: Fields } = await db.query(
+      q.Select(['data', 'value'], q.Get(q.Match(q.Index('resource_by_name'), 'crm-tokens')))
     )
 
-    return crmInfo.data.fields
+    return crmInfo.fields
   }
 
   static async saveFields(fields: Fields) {
     const crmInfo: { ref: Ref } = await db.query(
-      q.Get(q.Documents(q.Collection('crm-resources')))
+      q.Get(q.Match(q.Index('resource_by_name'), 'crm-tokens'))
     )
 
     await db.query(
       q.Update(crmInfo.ref, {
         data: {
-          fields
+          value: {
+            fields
+          }
         }
       })
     )
