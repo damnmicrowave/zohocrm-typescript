@@ -33,7 +33,7 @@ const converter_1 = require('./converter')
 const Logger = __importStar(require('winston'))
 const faunadb_1 = __importStar(require('faunadb'))
 const db = new faunadb_1.Client({
-  secret: process.env.FAUNADB_SERVER,
+  secret: process.env.FAUNADB_WEBSITE_SERVER,
   domain: 'db.eu.fauna.com'
 })
 

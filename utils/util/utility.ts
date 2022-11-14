@@ -18,7 +18,7 @@ import Ref = values.Ref
 type Fields = { [fieldName: string]: any }
 
 const db = new Client({
-  secret: process.env.FAUNADB_SERVER!,
+  secret: process.env.FAUNADB_WEBSITE_SERVER!,
   domain: 'db.eu.fauna.com'
 })
 
